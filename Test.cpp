@@ -30,6 +30,7 @@ string nospaces(string input)
     erase(input, '\r');
     return input;
 }
+//Good input need to return the same as the function
 TEST_CASE("Good input")
 {
     CHECK(nospaces(mat(9, 7, '@', '-')) == nospaces("@@@@@@@@@\n@-------@\n@-@@@@@-@\n@-@---@-@\n@-@@@@@-@\n@-------@\n@@@@@@@@@"));
@@ -38,25 +39,28 @@ TEST_CASE("Good input")
     CHECK(nospaces(mat(1, 1, '#', ')')) == nospaces("#"));
     CHECK(nospaces(mat(1, 1, ')', '#')) == nospaces("#"));
 }
-
+// Mat can't be zero
 TEST_CASE("Zero input")
 {
     CHECK_THROWS(mat(0, 3, '@', '-'));
     CHECK_THROWS(mat(3, 0, '@', '-'));
     CHECK_THROWS(mat(0, 0, '@', '-'));
 }
+// Mat can't be egative
 TEST_CASE("Negative input")
 {
     CHECK_THROWS(mat(-1, 3, '@', '-'));
     CHECK_THROWS(mat(1, -3, '@', '-'));
     CHECK_THROWS(mat(-1, -3, '@', '-'));
 }
+// Mat size can't be even
 TEST_CASE("Even input")
 {
     CHECK_THROWS(mat(2, 3, '@', '-'));
     CHECK_THROWS(mat(3, 2, '@', '-'));
     CHECK_THROWS(mat(2, 2, '@', '-'));
 }
+// Symbol can't be lower the 33 in ASCII TABLE
 TEST_CASE("Real symbol input")
 {
     CHECK_THROWS(mat(1, 3, '@', '\n'));
@@ -71,4 +75,9 @@ TEST_CASE("Real symbol input")
     CHECK_THROWS(mat(1, 3, '@', '\r'));
     CHECK_THROWS(mat(1, 3, '\r', '-'));
     CHECK_THROWS(mat(1, 3, '\r', '\r'));
+}
+//Symbol 1 can't be same as symbol 2
+TEST_CASE("Same symbol")
+{
+    CHECK_THROWS(mat(2, 3, '@', '@'));
 }
