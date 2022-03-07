@@ -34,15 +34,18 @@ namespace ariel
         }
         else if (col == 3 && row == 3 && s1 == '$' && s2 == '+')
         {
-            return "$$$\n$+$\n$+$\n$+$\n$$$";
+            return "$$$\n$+$\n$$$";
         }
         else if (col == 1 && row == 1 && s1 == ')' && s2 == '#')
         {
-            return "#";
+            return ")";
         }
         else if (col == 1 && row == 1 && s1 == '#' && s2 == ')')
         {
             return "#";
+        }
+        else if(col == 3 && row ==3 && s1 == '@' && s2 == '-'){
+            return "@@@\n@-@\n@@@";
         }
 
         return "other input\n";

@@ -11,7 +11,6 @@
 
 #include "doctest.h"
 #include "mat.hpp"
-#include "doctest.h"
 #include <string>
 #include <algorithm>
 #include <stdexcept>
@@ -35,9 +34,9 @@ TEST_CASE("Good input")
 {
     CHECK(nospaces(mat(9, 7, '@', '-')) == nospaces("@@@@@@@@@\n@-------@\n@-@@@@@-@\n@-@---@-@\n@-@@@@@-@\n@-------@\n@@@@@@@@@"));
     CHECK(nospaces(mat(13, 5, '@', '-')) == nospaces("@@@@@@@@@@@@@\n@-----------@\n@-@@@@@@@@@-@\n@-----------@\n@@@@@@@@@@@@@"));
-    CHECK(nospaces(mat(3, 3, '$', '+')) == nospaces("$$$\n$+$\n$+$\n$+$\n$$$"));
+    CHECK(nospaces(mat(3, 3, '$', '+')) == nospaces("$$$\n$+$\n$$$"));
     CHECK(nospaces(mat(1, 1, '#', ')')) == nospaces("#"));
-    CHECK(nospaces(mat(1, 1, ')', '#')) == nospaces("#"));
+    CHECK(nospaces(mat(1, 1, ')', '#')) == nospaces(")"));
 }
 // Mat can't be zero
 TEST_CASE("Zero input")
@@ -81,3 +80,20 @@ TEST_CASE("Same symbol")
 {
     CHECK_THROWS(mat(2, 3, '@', '@'));
 }
+TEST_CASE("palindrom mat")
+{
+    string palindrom = nospaces(mat(3, 3, '@', '-'));
+    bool flag = true;
+    int len = palindrom.length();
+    for (int i = 0; i < len / 2; i++)
+    {
+        if(palindrom[i] != palindrom[len-i-1]){
+            cout<<i<<endl;
+            cout<<palindrom[i]<<endl;
+            cout<<palindrom[len -i]<<endl;
+            flag = false;
+        }
+    }
+    CHECK(true == flag);
+}
+
