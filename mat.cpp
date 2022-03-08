@@ -1,6 +1,7 @@
 #include "mat.hpp"
 #include <string>
 #include <iostream>
+#include <algorithm>
 #include <stdexcept>
 
 using namespace std;
@@ -16,37 +17,76 @@ namespace ariel
         {
             throw runtime_error("Mat size is always odd");
         }
-        else if (s1 < 33  || s2 < 33)
+        else if (s1 < 33 || s2 < 33 || s1 > 126 || s2 >126)
         {
             throw runtime_error("unvalid symbol");
         }
-        else if (col == 9 && row == 7 && s1 == '@' && s2 == '-')
+        string outMat = "";
+        int **myMat1 = new int *[row];
+        int **myMat2 = new int *[row];
+        for (int i = 0; i < row; ++i)
         {
-            return "@@@@@@@@@\n@-------@\n@-@@@@@-@\n@-@---@-@\n@-@@@@@-@\n@-------@\n@@@@@@@@@";
-        }
-        else if (col == 13 && row == 5 && s1 == '@' && s2 == '-')
-        {
-            return "@@@@@@@@@@@@@\n@-----------@\n@-@@@@@@@@@-@\n@-----------@\n@@@@@@@@@@@@@";
-        }
-        else if (col == 3 && row == 3 && s1 == '$' && s2 == '+')
-        {
-            return "$$$\n$+$\n$$$";
-        }
-        else if (col == 1 && row == 1 && s1 == ')' && s2 == '#')
-        {
-            return ")";
-        }
-        else if (col == 1 && row == 1 && s1 == '#' && s2 == ')')
-        {
-            return "#";
-        }
-        else if(col == 3 && row ==3 && s1 == '@' && s2 == '-'){
-            return "@@@\n@-@\n@@@";
-        }
-        else if(col == 9 && row ==3 && s1 == '@' && s2 == '@'){
-            return "@@@@@@@@@\n@@@@@@@@@\n@@@@@@@@@";
-        }
+            myMat1[i] = new int[col];
+            myMat2[i] = new int[col];
 
-        return "other input\n";
+        }
+        for (int i = 0; i < row; i++)
+        {
+            for (int j = 0; j < col; j++)
+            {
+                myMat1[i][j] = min(i, j);
+                myMat2[i][j] = min(row - i - 1, col - j - 1);
+                myMat1[i][j] = min(myMat1[i][j], myMat2[i][j]);
+                // cout << myMat1[i][j];
+            }
+            // cout << endl;
+        }
+        // for (int i = 0; i < row; i++)
+        // {
+        //     for (int j = 0; j < col; j++)
+        //     {
+        //         myMat2[i][j] = min(row - i - 1, col - j - 1);
+        //         cout<<myMat2[i][j];
+        //     }
+        //     cout<<endl;
+        // }
+        // cout << "end\n";
+        // for (int i = 0; i < row; i++)
+        // {
+        //     for (int j = 0; j < col; j++)
+        //     {
+        //         myMat1[i][j] = min(myMat1[i][j], myMat2[i][j]);
+        //         cout<<myMat1[i][j];
+        //     }
+        //     cout<<endl;
+        // }
+        for (int i = 0; i < row; i++)
+        {
+            for (int j = 0; j < col; j++)
+            {
+                if (!(myMat1[i][j] % 2))
+                {
+                    outMat += s1;
+                }
+                else
+                {
+                    outMat += s2;
+                }
+            }
+            if (i != row - 1)
+            {
+                outMat += '\n';
+            }
+        }
+        for (int i = 0; i < row; ++i)
+        {
+            delete[] myMat1[i];
+            delete[] myMat2[i];
+        }
+        delete[] myMat1;
+        delete[] myMat2;
+        // cout << "out mat:\n"
+        //      << outMat;
+        return outMat;
     }
 }
