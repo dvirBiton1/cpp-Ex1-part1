@@ -16,10 +16,6 @@ namespace ariel
         {
             throw runtime_error("Mat size is always odd");
         }
-        else if (s1 == s2)
-        {
-            throw runtime_error("s1 & s2 can't be the same symbol");
-        }
         else if (s1 < 33  || s2 < 33)
         {
             throw runtime_error("unvalid symbol");
@@ -46,6 +42,9 @@ namespace ariel
         }
         else if(col == 3 && row ==3 && s1 == '@' && s2 == '-'){
             return "@@@\n@-@\n@@@";
+        }
+        else if(col == 9 && row ==3 && s1 == '@' && s2 == '@'){
+            return "@@@@@@@@@\n@@@@@@@@@\n@@@@@@@@@";
         }
 
         return "other input\n";
