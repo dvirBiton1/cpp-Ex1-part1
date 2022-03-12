@@ -12,7 +12,8 @@
 #include "doctest.h"
 #include "mat.hpp"
 #include <string>
-#include <algorithm>
+// #include <algorithm>
+#include <iostream>
 #include <stdexcept>
 using namespace ariel;
 using namespace std;
