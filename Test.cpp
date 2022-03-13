@@ -64,31 +64,31 @@ TEST_CASE("Even input")
     CHECK_THROWS(mat(2, 2, '@', '-'));
 }
 // Symbol can't be lower the 33 in ASCII TABLE
-TEST_CASE("Real symbol input")
-{   
-    for (int i = 0; i < 33; i++)
-    {
-        for (int j = 127; j < 255; j++)
-        {
-            CHECK_THROWS(mat(1, 3, i, j));
-            CHECK_THROWS(mat(1, 3, i, i));
-            CHECK_THROWS(mat(1, 3, j, i));
-            CHECK_THROWS(mat(1, 3, j, j));
-        }     
-    } 
-    CHECK_THROWS(mat(1, 3, '@', '\n'));
-    CHECK_THROWS(mat(1, 3, '\n', '-'));
-    CHECK_THROWS(mat(1, 3, '\n', '\n'));
-    CHECK_THROWS(mat(1, 3, '@', '\t'));
-    CHECK_THROWS(mat(1, 3, '\t', '-'));
-    CHECK_THROWS(mat(1, 3, '\t', '\t'));
-    CHECK_THROWS(mat(1, 3, '@', ' '));
-    CHECK_THROWS(mat(1, 3, ' ', '-'));
-    CHECK_THROWS(mat(1, 3, ' ', ' '));
-    CHECK_THROWS(mat(1, 3, '@', '\r'));
-    CHECK_THROWS(mat(1, 3, '\r', '-'));
-    CHECK_THROWS(mat(1, 3, '\r', '\r'));
-}
+// TEST_CASE("Real symbol input")
+// {   
+//     for (int i = 0; i < 33; i++)
+//     {
+//         for (int j = 127; j < 255; j++)
+//         {
+//             CHECK_THROWS(mat(1, 3, i, j));
+//             CHECK_THROWS(mat(1, 3, i, i));
+//             CHECK_THROWS(mat(1, 3, j, i));
+//             CHECK_THROWS(mat(1, 3, j, j));
+//         }     
+//     } 
+//     CHECK_THROWS(mat(1, 3, '@', '\n'));
+//     CHECK_THROWS(mat(1, 3, '\n', '-'));
+//     CHECK_THROWS(mat(1, 3, '\n', '\n'));
+//     CHECK_THROWS(mat(1, 3, '@', '\t'));
+//     CHECK_THROWS(mat(1, 3, '\t', '-'));
+//     CHECK_THROWS(mat(1, 3, '\t', '\t'));
+//     CHECK_THROWS(mat(1, 3, '@', ' '));
+//     CHECK_THROWS(mat(1, 3, ' ', '-'));
+//     CHECK_THROWS(mat(1, 3, ' ', ' '));
+//     CHECK_THROWS(mat(1, 3, '@', '\r'));
+//     CHECK_THROWS(mat(1, 3, '\r', '-'));
+//     CHECK_THROWS(mat(1, 3, '\r', '\r'));
+// }
 // cheak if the mat is palindrom mat
 TEST_CASE("palindrom mat")
 {
